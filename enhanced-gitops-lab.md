@@ -1002,7 +1002,7 @@ spec:
 
 ### Generate All Files with AI
 
-**Fill in YOUR values:**
+**Fill in YOUR values:**  and run this in your terminal before running the prompt.
 ```bash
 # Set your variables first:
 export AWS_ACCOUNT_ID="123456789012"  # Your 12-digit AWS Account ID
