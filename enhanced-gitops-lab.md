@@ -1297,7 +1297,40 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 # Access UI at: https://localhost:8080
 # Note: Browser will show security warning (self-signed cert) - click "Advanced" → "Proceed"
 
-# Method 2: LoadBalancer (For production)
+Method 2: The "Direct" Way (Using NodePort)
+Since your EKS nodes already have Public IPs (as seen in your kubectl get nodes output), you can expose ArgoCD directly on those IPs.
+
+1. Change Service to NodePort
+Run this command to change the service type:
+
+Bash
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
+
+2. Find the Assigned Port
+Kubernetes will assign a random port (between 30000–32767).
+
+
+Find it by running:
+Bash
+kubectl get svc argocd-server -n argocd
+Look for the PORT(S) column. It will look like 443:3xxxx/TCP. Note the 3xxxx number.
+
+3. Update AWS Security Group
+You must allow traffic to your EKS Worker Nodes (not your Ubuntu EC2) on that 3xxxx port:
+
+Go to EC2 Console > Instances.
+
+Select one of your EKS nodes (e.g., ip-192-168-12-28...).
+
+Click Security > Security Groups.
+
+Add an Inbound Rule: Custom TCP, Port: 3xxxx (the one from step 2), Source: 0.0.0.0/0.
+
+4. Access the UI
+In your browser, go to:
+https://13.200.205.255:3xxxx (Use either of the External IPs from your node list).
+
+# Method 3: LoadBalancer (For production)
 # kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 # Wait for external IP, then access via that IP
 ```
