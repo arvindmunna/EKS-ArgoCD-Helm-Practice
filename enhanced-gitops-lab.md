@@ -1463,6 +1463,7 @@ kubectl get applications -n argocd -w
 # NAME           SYNC STATUS   HEALTH STATUS
 # frontend-app   Synced        Healthy
 ```
+<img width="2936" height="1582" alt="image" src="https://github.com/user-attachments/assets/f8a2c872-6e2a-4014-96bc-23a950acfad3" />
 
 #### Step 8: Verify Deployment
 
@@ -1493,8 +1494,12 @@ curl http://$(kubectl get svc frontend-app-service -o jsonpath='{.status.loadBal
 # Or open in browser:
 # http://a1b2c3d4e5f6789.ap-south-1.elb.amazonaws.com
 
+<img width="2936" height="1582" alt="image" src="https://github.com/user-attachments/assets/cfe3e778-01e7-4f5a-b39c-433a66613bb1" />
+
 # You should see: "GitOps Lab: Hello World! Frontend Deployment Successful (Version 1)"
 ```
+
+
 
 #### Step 9: View in ArgoCD UI
 
