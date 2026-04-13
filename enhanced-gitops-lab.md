@@ -1494,11 +1494,10 @@ curl http://$(kubectl get svc frontend-app-service -o jsonpath='{.status.loadBal
 # Or open in browser:
 # http://a1b2c3d4e5f6789.ap-south-1.elb.amazonaws.com
 
-<img width="2936" height="1582" alt="image" src="https://github.com/user-attachments/assets/cfe3e778-01e7-4f5a-b39c-433a66613bb1" />
-
 # You should see: "GitOps Lab: Hello World! Frontend Deployment Successful (Version 1)"
 ```
 
+<img width="2936" height="1582" alt="image" src="https://github.com/user-attachments/assets/eea6b068-6c42-49b9-aa22-78d0a9293ac2" />
 
 
 #### Step 9: View in ArgoCD UI
