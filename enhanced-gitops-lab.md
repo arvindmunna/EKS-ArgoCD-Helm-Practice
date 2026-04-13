@@ -1294,7 +1294,7 @@ kubectl get pods -n argocd
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 # Keep this terminal open
-# Access UI at: https://localhost:8080
+# Access UI at: https://localhost:8080 ( you can use public ip of the EC2 instance with port number if working with ec2 instance )
 # Note: Browser will show security warning (self-signed cert) - click "Advanced" → "Proceed"
 
 Method 2: The "Direct" Way (Using NodePort)
