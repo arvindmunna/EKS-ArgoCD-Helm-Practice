@@ -1297,24 +1297,23 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 # Access UI at: https://localhost:8080 ( you can use public ip of the EC2 instance with port number if working with ec2 instance )
 # Note: Browser will show security warning (self-signed cert) - click "Advanced" → "Proceed"
 
-**Method 2:** The "Direct" Way (Using NodePort)
-Since your EKS nodes already have Public IPs (as seen in your kubectl get nodes output), you can expose ArgoCD directly on those IPs.
+Method 2:** The "Direct" Way (Using NodePort)
+#Since your EKS nodes already have Public IPs (as seen in your kubectl get nodes output), you can expose ArgoCD directly on those IPs.
 
 **1. Change Service to NodePort**
-Run this command to change the service type:
+#Run this command to change the service type:
 
-```Bash
+```bash
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}'
 
-**2. Find the Assigned Port**
+2. Find the Assigned Port**
 Kubernetes will assign a random port (between 30000–32767).
+Find it by running:
 
-
-**Find it by running:**
-```Bash
+```bash
 kubectl get svc argocd-server -n argocd
-Look for the PORT(S) column. It will look like 443:3xxxx/TCP. Note the 3xxxx number.
-**
+#Look for the PORT(S) column. It will look like 443:3xxxx/TCP. Note the 3xxxx number.
+
 3. Update AWS Security Group**
 You must allow traffic to your EKS Worker Nodes (not your Ubuntu EC2) on that 3xxxx port:
 
